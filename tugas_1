@@ -1,0 +1,70 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <string.h>
+
+struct data{
+    char* name[30];
+    int nim;
+    int ipk;
+    };
+
+void main(){
+    
+    int i, j, save2, save3, jml = 3;
+    char* save1[30];
+    struct data arr_tampung[jml];
+
+    for(i = 0; i < jml; i++){
+        printf("Masukkan data mahasiswa ke %d\n", i+1);
+        printf("Masukkan nama\t: ");
+            fflush(stdin);
+            gets(&arr_tampung[i].name);
+        printf("Masukkan nim\t: ");
+        scanf("%d", &arr_tampung[i].nim);
+        printf("Masukkan ipk\t: ");
+        scanf("%d", &arr_tampung[i].ipk);
+        printf("\n");
+        }
+
+    for(i = 0; i < jml; i++){
+        printf("Nama\t: %s\nNIM\t: %d\nNilai\t: %d", arr_tampung[i].name, arr_tampung[i].nim, arr_tampung[i].ipk);
+        printf("\n\n");
+    }
+
+    //sorting ipk
+    for (i = 0; i < jml-1; i++){
+        for (j = i; j < jml; j++){
+            if (arr_tampung[i].ipk > arr_tampung[j].ipk){
+                strcpy(arr_tampung[i].name, save1); //save1 = arr_tampung[i].name;
+                save2 = arr_tampung[i].nim;
+                save3 = arr_tampung[i].ipk;
+                
+                strcpy(arr_tampung[i].name, arr_tampung[j].name;); //arr_tampung[i].name = arr_tampung[j].name;
+                arr_tampung[i].nim = arr_tampung[j].nim;
+                arr_tampung[i].ipk = arr_tampung[j].ipk;
+                
+                strcpy(save1, arr_tampung[j].name); //arr_tampung[j].name = save1;
+                arr_tampung[j].nim = save2;
+                arr_tampung[j].ipk = save3;
+            }
+        }
+    }
+
+/*  for (i = 0; i < jml-1; i++){
+        for (j = i; j < jml; j++){
+            if (arr_tampung[i].ipk > arr_tampung[j].ipk){
+                save = arr_tampung[i].name && arr_tampung[i].nim && arr_tampung[i].ipk;
+                arr_tampung[i].name && arr_tampung[i].nim && arr_tampung[i].ipk = arr_tampung[j].name && arr_tampung[j].nim && arr_tampung[j].ipk;
+                arr_tampung[j].name && arr_tampung[j].nim && arr_tampung[j].ipk = save;
+            }
+        }
+    }
+*/    
+    printf("Data setelah sorting adalah :\n");
+    for(i = 0; i < jml; i++){
+        printf("Nama\t: %s\nNIM\t: %d\nNilai\t: %d", arr_tampung[i].name, arr_tampung[i].nim, arr_tampung[i].ipk);
+        printf("\n\n");
+    }
+
+}
