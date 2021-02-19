@@ -9,7 +9,7 @@
 
 struct data {
 	//struct
-	char* name[30];
+	char name[50];
 	int nim;
 	int ipk;
 	};
@@ -200,9 +200,24 @@ void main() {
 		case 4: {
 			//search menggunakan Squential Search
 			int searchnim, searchipk, search = 0;
+			char searchname[50];
+			//char tempname1, tempname2, tempname3;
+			char *tempname1 = (char *)malloc((strlen(arr_data[i].name) + 1) * sizeof(char));
+			char *tempname2 = (char *)malloc((strlen(arr_data[i].name) + 1) * sizeof(char));
+			char *tempname3 = (char *)malloc((strlen(arr_data[i].name) + 1) * sizeof(char));
+			strcpy(tempname1, arr_data[0].name);
+			strcpy(tempname2, arr_data[1].name);
+			strcpy(tempname3, arr_data[2].name);
+			
+			if (identifier == 0) {
+				printf("\n Anda belum memasukkan data!\n\n ");
+				system("pause");
+				system("cls");
+				goto menu;
+			} else if (identifier == 1) {
 			system("cls");
 			printf(" ----------------------------------------\n");
-			printf(" =================SEARCH=================\n");
+			printf(" ================ SEARCH ================\n");
 			printf(" ----------------------------------------\n\n");
 			printf(" 1. Search dengan NIM\n");
 			printf(" 2. Search dengan IPK\n");
@@ -215,6 +230,7 @@ void main() {
 					for (i = 0; i < jml; i++) {
 						printf(" - %d\n", arr_data[i].nim);
 					}
+					searchlagi1:
 					printf("\n Silakan masukkan NIM yang dicari : ");
 					scanf("%d", &searchnim);
 					for (i = 0; i < jml; i++) {
@@ -225,12 +241,17 @@ void main() {
 							goto menu;
 						}
 					}
+					if (arr_data[i].nim != searchnim) {
+							printf("\n NIM yang anda cari tidak ada dalam data.\n Silakan coba lagi.\n ");
+							goto searchlagi1;
+						}
 				}
 				case 2: {
 					printf("\n List IPK yang ada dalam data : \n");
 					for (i = 0; i < jml; i++) {
 						printf(" > %d\n", arr_data[i].ipk);
 					}
+					searchlagi2:
 					printf("\n Silakan masukkan IPK yang dicari : ");
 					scanf("%d", &searchipk);
 					for (i = 0; i < jml; i++) {
@@ -241,8 +262,40 @@ void main() {
 							goto menu;
 						}
 					}
+					if (arr_data[i].ipk != searchipk) {
+							printf("\n IPK yang anda cari tidak ada dalam data.\n Silakan coba lagi.\n ");
+							goto searchlagi2;
+						}
 				}
 				case 3: {
+					printf("\n List Nama yang ada dalam data : \n");
+					printf(" > %s\n", tempname1);
+					printf(" > %s\n", tempname2);
+					printf(" > %s\n", tempname3);
+					searchlagi3:
+					printf("\n Silakan masukkan Nama yang dicari : ");
+					gets(searchname);
+					if (strcmp(tempname1, searchname) == 0){
+						printf("\n Data yang anda cari adalah sebagai berikut.\n");
+							printf(" Nama\t: %s\n NIM\t: %d\n IPK\t: %d\n\n ", arr_data[0].name, arr_data[0].nim, arr_data[0].ipk);
+							system("pause");
+					}
+					else if (strcmp(tempname2, searchname) == 0){
+						printf("\n Data yang anda cari adalah sebagai berikut.\n");
+							printf(" Nama\t: %s\n NIM\t: %d\n IPK\t: %d\n\n ", arr_data[1].name, arr_data[1].nim, arr_data[1].ipk);
+							system("pause");
+					}
+					else if (strcmp(tempname3, searchname) == 0){
+						printf("\n Data yang anda cari adalah sebagai berikut.\n");
+							printf(" Nama\t: %s\n NIM\t: %d\n IPK\t: %d\n\n ", arr_data[2].name, arr_data[2].nim, arr_data[2].ipk);
+							system("pause");
+					}
+					else{
+						printf("\n Nama yang anda cari tidak ada dalam data.\n Silakan coba lagi.\n ");
+						goto searchlagi3;
+					}
+				}
+				case 4: {
 					system("cls");
 					goto menu;
 				}
@@ -252,8 +305,11 @@ void main() {
 					goto menu;
 				}
 			}
+			}
 		}
 		case 5:{
+			printf("\n Byebye!\n ");
+			printf("Ivan Andika Surya, 2021\n");
 			exit(EXIT_SUCCESS);
 		}
 		default: {
@@ -263,3 +319,6 @@ void main() {
 				}
 	}
 }
+
+
+
