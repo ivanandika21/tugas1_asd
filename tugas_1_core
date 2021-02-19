@@ -190,8 +190,27 @@ void main(){
 			}	
 		}
 		case 4:{
+			int lagi, searcangka = 0;
+			char search;
+			system("cls");
+				printf(" ========================================\n");
+				printf(" =================SEARCH=================\n");
+				printf(" ========================================\n\n");
+				printf(" Silakan masukkan pilihan anda : ");
+				scanf("%c", &search);
 			
-			break;
+			for(i = 0; i < jml; i++){
+        		if (strcmp(arr_tampung[i].name, search) == 0){
+        			printf("Data yang anda cari adalah sebagai berikut.");
+        			printf(" Nama\t: %s\n NIM\t: %d\n Nilai\t: %d", arr_tampung[i].name, arr_tampung[i].nim, arr_tampung[i].ipk);
+				}
+				else{
+					printf("Data tidak ditemukan.\n ");
+					system("cls");
+					system("pause");
+					//goto menusearch;
+				}
+			}
 		}
 	}
 }
