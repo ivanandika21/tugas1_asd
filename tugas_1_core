@@ -15,12 +15,13 @@ void main(){
     int identifier = 0;
     struct data arr_tampung[jml];
     char *temp = (char *)malloc((strlen(arr_tampung[i].name) + 1) * sizeof(char));
+    
 	menuuu:
 		printf(" ========================================\n");
 		printf(" ==================MENU==================\n");
-		printf(" ========================================\n");
+		printf(" ========================================\n\n");
 		printf(" 1. Input Data\n");
-		printf(" 2. Lihat Data\n");
+		printf(" 2. Lihat Data Terkini\n");
 		printf(" 3. Sorting Data\n");
 		printf(" 4. Search Data\n");
 		printf(" Silakan masukkan pilihan anda : ");
@@ -32,7 +33,7 @@ void main(){
 			system("cls");
 			printf(" ========================================\n");
 			printf(" ===============INPUT DATA===============\n");
-			printf(" ========================================\n");
+			printf(" ========================================\n\n");
 			for(i = 0; i < jml; i++){	
        	 		printf(" Masukkan data mahasiswa ke %d\n", i+1);
         		printf(" Masukkan nama\t: ");
@@ -50,24 +51,26 @@ void main(){
 					}
         		printf("\n");
         	}
-        	printf(" Data berhasil di input.\n\n ");
+        	printf(" Data berhasil di input.");
         	identifier = 1;
+        	printf("\n\n ");
 			system("pause");
 			system("cls");
 			goto menuuu;
 		}
 		case 2:{
 			if (identifier == 0){
-				printf(" Anda belum memasukkan data!\n\n ");
+				printf("\n Anda belum memasukkan data!\n\n ");
 				system("pause");
 				system("cls");
 				goto menuuu;
 			}
 			else if (identifier == 1){
 				for(i = 0; i < jml; i++){
-        			printf(" Nama\t: %s\n NIM\t: %d\n Nilai\t: %d", arr_tampung[i].name, arr_tampung[i].nim, arr_tampung[i].ipk);
-        			printf("\n\n");
+        			printf("\n Nama\t: %s\n NIM\t: %d\n Nilai\t: %d", arr_tampung[i].name, arr_tampung[i].nim, arr_tampung[i].ipk);
+        			printf("\n");
         			}
+        		printf("\n ");
 				system("pause");
 				system("cls");
 				goto menuuu;
@@ -81,7 +84,7 @@ void main(){
 			system("cls");
 				printf(" ========================================\n");
 				printf(" ==================SORT==================\n");
-				printf(" ========================================\n");
+				printf(" ========================================\n\n");
 				printf(" 1. Sort berdasar nilai\n");
 				printf(" 2. Sort berdasarkan nim\n");
 				printf(" 3. Sort berdasarkan abjad\n");
@@ -110,12 +113,77 @@ void main(){
             				}
         				}
     				}
-    				printf(" Data setelah sorting adalah :\n");
+    				printf("\n Data setelah sorting IPK adalah :\n");
     				for(i = 0; i < jml; i++){
         				printf(" Nama\t: %s\n NIM\t: %d\n Nilai\t: %d", arr_tampung[i].name, arr_tampung[i].nim, arr_tampung[i].ipk);
         				printf("\n\n");
     					}
+    				printf(" ");
     				system("pause");
+					system("cls");
+					goto menuuu;
+				}
+				case 2:{
+					//sorting nim
+    				for (i = 0; i < jml-1; i++){
+        				for (j = i; j < jml; j++){
+            				if (arr_tampung[i].nim > arr_tampung[j].nim){
+                				save1 = arr_tampung[i].nim;
+                				save2 = arr_tampung[i].ipk;
+
+                				arr_tampung[i].nim = arr_tampung[j].nim;
+                				arr_tampung[i].ipk = arr_tampung[j].ipk;
+
+                				arr_tampung[j].nim = save1;
+                				arr_tampung[j].ipk = save2;
+
+                				strcpy(temp, arr_tampung[i].name);
+                				strcpy(arr_tampung[i].name, arr_tampung[j].name);
+                				strcpy(arr_tampung[j].name, temp);
+            				}
+        				}
+    				}
+    				printf("\n Data setelah sorting NIM adalah :\n");
+    				for(i = 0; i < jml; i++){
+        				printf(" Nama\t: %s\n NIM\t: %d\n Nilai\t: %d", arr_tampung[i].name, arr_tampung[i].nim, arr_tampung[i].ipk);
+        				printf("\n\n");
+    					}
+    				printf(" ");
+    				system("pause");
+					system("cls");
+					goto menuuu;
+				}
+				case 3:{
+					//sorting name
+    				for (i = 0; i < jml-1; i++){
+        				for (j = i; j < jml; j++){
+            				if (strcmp(arr_tampung[i].name, arr_tampung[j].name) > 0){
+                				save1 = arr_tampung[i].nim;
+                				save2 = arr_tampung[i].ipk;
+
+                				arr_tampung[i].nim = arr_tampung[j].nim;
+                				arr_tampung[i].ipk = arr_tampung[j].ipk;
+
+                				arr_tampung[j].nim = save1;
+                				arr_tampung[j].ipk = save2;
+
+                				strcpy(temp, arr_tampung[i].name);
+                				strcpy(arr_tampung[i].name, arr_tampung[j].name);
+                				strcpy(arr_tampung[j].name, temp);
+            				}
+        				}
+    				}
+    				printf("\n Data setelah sorting NIM adalah :\n");
+    				for(i = 0; i < jml; i++){
+        				printf(" Nama\t: %s\n NIM\t: %d\n Nilai\t: %d", arr_tampung[i].name, arr_tampung[i].nim, arr_tampung[i].ipk);
+        				printf("\n\n");
+    					}
+    				printf(" ");
+    				system("pause");
+					system("cls");
+					goto menuuu;
+				}
+				case 4:{
 					system("cls");
 					goto menuuu;
 				}
