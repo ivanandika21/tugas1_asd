@@ -15,29 +15,30 @@ struct data{ //struct
 
 void main(){ //main
     int i, j, save1, save2;
-	int pilih = 0, jml = 2;
+	int pilih = 0, jml = 3;
     int identifier = 0;
     struct data arr_tampung[jml];
     char *temp = (char *)malloc((strlen(arr_tampung[i].name) + 1) * sizeof(char));
     
 	menuuu: //menu
 		system("cls");
-		printf(" ========================================\n");
-		printf(" ==================MENU==================\n");
-		printf(" ========================================\n\n");
+		printf(" ----------------------------------------\n");
+		printf(" ================= MENU =================\n");
+		printf(" ----------------------------------------\n\n");
 		printf(" 1. Input Data\n");
 		printf(" 2. Lihat Data Terkini\n");
 		printf(" 3. Sorting Data\n");
 		printf(" 4. Search Data\n");
+		printf(" 5. Keluar\n");
 		printf(" Silakan masukkan pilihan anda : ");
 		scanf("%d", &pilih);
 		
 	switch (pilih){
 		case 1:{ //Input Data
 			system("cls");
-			printf(" ========================================\n");
-			printf(" ===============INPUT DATA===============\n");
-			printf(" ========================================\n\n");
+			printf(" ----------------------------------------\n");
+			printf(" ============== INPUT DATA ==============\n");
+			printf(" ----------------------------------------\n\n");
 			for(i = 0; i < jml; i++){	
        	 		printf(" Masukkan data mahasiswa ke %d\n", i+1);
         		printf(" Masukkan nama\t: ");
@@ -85,9 +86,9 @@ void main(){ //main
 		case 3:{ //Sort menggunakan Selection Sort
 			int sort = 0;
 			system("cls");
-				printf(" ========================================\n");
-				printf(" ==================SORT==================\n");
-				printf(" ========================================\n\n");
+				printf(" ----------------------------------------\n");
+				printf(" ================= SORT =================\n");
+				printf(" ----------------------------------------\n\n");
 				printf(" 1. Sort berdasar nilai\n");
 				printf(" 2. Sort berdasarkan nim\n");
 				printf(" 3. Sort berdasarkan abjad\n");
@@ -190,25 +191,33 @@ void main(){ //main
 					system("cls");
 					goto menuuu;
 				}
+				default: {
+						printf(" Oops coba lagi! Masukkan nomor menu dengan benar.\n\n ");
+						system("pause");
+						goto menuuu;
+					}
 			}	
 		}
 		
 		case 4:{ //search menggunakan Squential Search
 			int searchnim, searchipk, search = 0;
 			system("cls");
-				printf(" ========================================\n");
+				printf(" ----------------------------------------\n");
 				printf(" =================SEARCH=================\n");
-				printf(" ========================================\n\n");
+				printf(" ----------------------------------------\n\n");
 				printf(" 1. Search nim\n");
 				printf(" 2. Search ipk\n");
-				printf(" 3. Search nama\n");
-				printf(" 4. Kembali ke menu utama\n");	
+				printf(" 3. Kembali ke menu utama\n");	
 				printf(" Silakan masukkan pilihan anda : ");
 				scanf("%d", &search);
 			
 			switch (search){
 				case 1:{
-					printf(" Silakan masukkan nim yang dicari : ");
+					printf("\n List NIM yang ada dalam data : \n");
+					for(i = 0; i < jml; i++){
+        			printf(" - %d\n", arr_tampung[i].nim);
+        			}
+					printf("\n Silakan masukkan nim yang dicari : ");
 					scanf("%d", &searchnim);
 					for(i = 0; i < jml; i++){
         				if (arr_tampung[i].nim == searchnim){
@@ -220,7 +229,11 @@ void main(){ //main
 					}
 				}
 				case 2:{
-					printf(" Silakan masukkan nim yang dicari : ");
+					printf("\n List IPK yang ada dalam data : \n");
+					for(i = 0; i < jml; i++){
+        			printf(" > %d\n", arr_tampung[i].ipk);
+        			}
+					printf("\n Silakan masukkan nim yang dicari : ");
 					scanf("%d", &searchipk);
 					for(i = 0; i < jml; i++){
         				if (arr_tampung[i].ipk == searchipk){
@@ -232,12 +245,14 @@ void main(){ //main
 					}
 				}
 				case 3:{
-					break;
-				}
-				case 4:{
 					system("cls");
 					goto menuuu;
 				}
+				default: {
+						printf(" Oops coba lagi! Masukkan nomor menu dengan benar.\n\n ");
+						system("pause");
+						goto menuuu;
+					}
 			}
 		}
 	}
